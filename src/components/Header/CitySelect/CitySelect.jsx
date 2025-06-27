@@ -1,21 +1,27 @@
-import React from 'react'
-import CreatableSelect from 'react-select/creatable'
+import React from "react";
+import CreatableSelect from "react-select/creatable";
 import { cityOptions } from "../data";
-import { SelectWrapper } from '../styles';
-
-
+import { SelectWrapper } from "../styles";
+import { useNavigate } from "react-router-dom";
 
 const CitySelect = () => {
+  const navigate = useNavigate();
+
+  const handleChange = (newValue, actionMeta) => {
+    navigate(`/${newValue.value}`);
+  };
+
   return (
     <SelectWrapper>
       <CreatableSelect
-        isClearable options={cityOptions}
+        options={cityOptions}
         defaultInputValue={null}
-        className='react-select-container'
-        classNamePrefix='react-select'
+        className="react-select-container"
+        classNamePrefix="react-select"
+        onChange={handleChange}
       />
     </SelectWrapper>
-  )
-}
+  );
+};
 
-export default CitySelect
+export default CitySelect;
